@@ -24,7 +24,8 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
-
+    environment:
+      name: release
     steps:
       - uses: actions/checkout@v3
 
@@ -64,6 +65,8 @@ jobs:
   prod:
     runs-on: ubuntu-latest
     needs: release
+    environment:
+      name: production
     #needs: [release, approval]
     #if: ${{ needs.approval.outputs.approval == 'approved' }}
     steps:
@@ -71,7 +74,7 @@ jobs:
 
       - name: Merging repo
         run: |
-          pwsh -File ./.github/workflows/mergerepo.ps1 -SourceTag ${{ inputs.Tag }} ${{ vars.TargetBranch_PROD}} ${{ vars.SVC_REPOS_EMAIL}} ${{ vars.SVC_REPOS_USERNAME}}
+          pwsh -File ./.github/workflows/mergerepo.ps1 -SourceTag ${{ inputs.Tag }} ${{ vars.TargetBranch_PROD}} ${{ vars.SVC_REPOS_EMAIL_PROD}} ${{ vars.SVC_REPOS_USERNAME_PROD}}
         shell: pwsh
      
       - name: printING commit id  
@@ -86,5 +89,5 @@ jobs:
         run: pip install -r requirements.txt
         
       - name: Run Python script
-        run: python ./.github/workflows/matillion_api_call.py ${{ vars.SVC_MATILLION_USERNAME_PROD }}  ${{ secrets.SVC_MATILLION_PASSWORD_PROD }} ${{ vars.MATILLION_PROJECT_PROD }} ${{ vars.MATILLION_GROUP_PROD }} ${{ vars.MATILLION_VERSION_PROD }} ${{ vars.MATILLION_INSTANCE_PROD }} ${{ vars.SVC_REPOS_EMAIL}} ${{secrets.SVC_REPOS_PASSWORD_PROD}} ${{ env.COMMIT_ID }}
+        run: python ./.github/workflows/matillion_api_call.py ${{ vars.SVC_MATILLION_USERNAME_PROD }}  ${{ secrets.SVC_MATILLION_PASSWORD_PROD }} ${{ vars.MATILLION_PROJECT_PROD }} ${{ vars.MATILLION_GROUP_PROD }} ${{ vars.MATILLION_VERSION_PROD }} ${{ vars.MATILLION_INSTANCE_PROD }} ${{ vars.SVC_REPOS_EMAIL_PROD}} ${{secrets.SVC_REPOS_PASSWORD_PROD}} ${{ env.COMMIT_ID }}
   
