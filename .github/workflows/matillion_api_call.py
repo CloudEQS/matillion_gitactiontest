@@ -54,5 +54,7 @@ res_azrepo = requests.post(azrepopull_url, json=body, auth=(str(user), str(passw
 
 azrepo_status = json.loads(res_azrepo.text)
 print(azrepo_status)
+else:
+    exit(1)
 
 
