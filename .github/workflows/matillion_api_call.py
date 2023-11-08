@@ -64,7 +64,7 @@ if azrepo_status['success']:
     }
     print("CommitId:-", commitid)
     
-    '''
+    
     x = requests.post(url_switch, json=body_commit, auth=(str(user), str(password)), verify=False)
     print("switch")
     res = json.loads(x.text)
@@ -75,7 +75,7 @@ if azrepo_status['success']:
     else:
         print("switched failed")
         exit(1)
-    '''
+    
     
     exit(0)
 
