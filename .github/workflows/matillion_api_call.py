@@ -55,27 +55,27 @@ res_azrepo = requests.post(azrepopull_url, json=body, auth=(str(user), str(passw
 azrepo_status = json.loads(res_azrepo.text)
 print(azrepo_status)
 
-#if (azrepo_status['success']):
+if (azrepo_status['success']):
     ## code to get the latest commitID
-  #  url_switch = '{0}/rest/v1/group/name/{1}/project/name/{2}/version/name/default/scm/switchCommit'.format(
-  #          instance, group, project)
-  #  body_commit = {
-  #          "commitID": commitid
-  #      }
- #   print("CommitId:-",commitid)
+    url_switch = '{0}/rest/v1/group/name/{1}/project/name/{2}/version/name/default/scm/switchCommit'.format(
+            instance, group, project)
+    body_commit = {
+            "commitID": commitid
+        }
+    print("CommitId:-",commitid)
     
-  #  x = requests.post(url_switch, json=body_commit, auth=(str(user), str(password)), verify=False)
-  #  print("switch")
-  #  res = json.loads(x.text)
-  #  print(res)
-  #  if (res['success']):
-  #      print("switched sucessfully")
-  #      exit(0)
-  #  else:
-  #      print("switched failed")
-  #      exit(1)
+   # x = requests.post(url_switch, json=body_commit, auth=(str(user), str(password)), verify=False)
+   # print("switch")
+   # res = json.loads(x.text)
+   # print(res)
+   # if (res['success']):
+   #     print("switched sucessfully")
+   #     exit(0)
+   # else:
+   #     print("switched failed")
+   #     exit(1)
 
-    #exit(0)
+    exit(0)
     """
     x = requests.post(url_switch, json=body_commit, auth=(str(user), str(password)), verify=False)
     print("switch")
