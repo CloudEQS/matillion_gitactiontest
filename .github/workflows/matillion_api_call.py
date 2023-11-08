@@ -54,11 +54,10 @@ res_azrepo = requests.post(azrepopull_url, json=body, auth=(str(user), str(passw
 
 azrepo_status = json.loads(res_azrepo.text)
 print(azrepo_status)
-
+"""
 if (azrepo_status['success']):
     print('test')
     # code to get the latest commitID
-    """
     url_switch = '{0}/rest/v1/group/name/{1}/project/name/{2}/version/name/default/scm/switchCommit'.format(
             instance, group, project)
     body_commit = {
@@ -109,6 +108,7 @@ if (azrepo_status['success']):
             exit(0)
         else:
             exit(1)
-"""
+
 else:
     exit(1)
+"""    
