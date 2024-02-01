@@ -1,0 +1,16 @@
+name: Delete Local Branch
+on:
+  delete:
+    branches:
+      - '*'
+env:
+  GA_DELETED_BRANCH: ${{ github.event.ref }}
+jobs:
+  delete_branch_job:
+    runs-on: self-hosted
+    environment:
+      name : dev
+    steps:
+      - name: Print Deleted Branch
+        run: |
+          echo "Deleted branch: ${{ github.event.ref }}"
